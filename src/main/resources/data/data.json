@@ -1,0 +1,26 @@
+[
+  {
+    "id": null,
+    "wordi":"assistant",
+    "type":"NOUN",
+    "meanvi": "Trợ lý",
+    "meanen": "A person who hel another person manage time, schedule,...",
+    "spellingen": "/əˈsɪstənt/",
+    "spellingus": "/əˈsɪstənt/",
+    "example": "My assistant will now demonstrate the machine in action.",
+    "urlen": "https://www.oxfordlearnersdictionaries.com/media/english/uk_pron/a/ass/assis/assistant__gb_1.mp3",
+    "urlus": "https://www.oxfordlearnersdictionaries.com/media/english/us_pron/a/ass/assis/assistant__us_1.mp3"
+  },
+  {
+    "id": null,
+    "wordi":"punch",
+    "type":"VERB",
+    "meanvi": "đấm",
+    "meanen": "Using hand to hit somebody or something",
+    "spellingen": "/pʌntʃ/",
+    "spellingus": "/pʌntʃ/",
+    "example": "He was punching the air in triumph.",
+    "urlen": "https://www.oxfordlearnersdictionaries.com/media/english/uk_pron/p/pun/punch/punch__gb_2.mp3",
+    "urlus": "https://www.oxfordlearnersdictionaries.com/media/english/us_pron/p/pun/punch/punch__us_2.mp3"
+  }
+]
