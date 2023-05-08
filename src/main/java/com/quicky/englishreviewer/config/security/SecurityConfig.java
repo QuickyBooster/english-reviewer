@@ -6,9 +6,11 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 import static org.springframework.security.config.Customizer.withDefaults;
@@ -56,9 +58,9 @@ public class SecurityConfig {
                         .usernameParameter("username")
                         .passwordParameter("password")
                         .loginPage("/authentication/login")
+                        .loginProcessingUrl("/j_spring_security_check")
                         .defaultSuccessUrl("/home")
                         .failureUrl("/authentication/login?error")
-                        .permitAll()
                 )
                 .oauth2Login(oauth2 -> oauth2
                         .loginPage("/authentication/login")
@@ -66,7 +68,6 @@ public class SecurityConfig {
                 .logout(logout -> logout
                         .logoutUrl("/home")
                         .deleteCookies("JSESSIONID")
-                        .permitAll()
                 )
                 .build();
     }

@@ -11,8 +11,9 @@
     <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
 </head>
 <body>
-<div class="container">
-    <form class="form-signin" method="post" action="/login">
+<div class="container" }>
+    <form class="form-signin" method="post" action="/authentication/login-check">
+        <div >${param.error}${param.logout}</div>
         <h2 class="form-signin-heading">Please sign in</h2>
         <p>
             <label for="username" class="sr-only">Username</label>

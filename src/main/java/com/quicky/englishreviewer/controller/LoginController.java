@@ -12,19 +12,24 @@ public class LoginController {
         return "login";
     }
 
-    @PostMapping("/login")
-    public String welcomePage(ModelMap model, @RequestParam String userId, @RequestParam String password){
-        if(userId.equals("admin")&&password.equals("root")){
-            model.put("userId",userId);
+    @PostMapping("/login-check")
+    public String welcomePage(ModelMap model, @RequestParam String username, @RequestParam String password){
+        if(username.equals("admin")&&password.equals("root")){
+            model.put("userId",username);
             return "welcome";
         }
-        model.put("errorMsg","please provide the correct user and password");
+        model.put("param.error","true");
         return "login";
     }
     @GetMapping("/authentication/login?error")
     public String failLogin(ModelMap model){
-        model.put("errorMsg","Something errors, please login again!");
+        model.put("param.error","true");
         return"login";
+    }
+    @GetMapping("/authentication/logout")
+    public String logout(ModelMap model){
+        model.put("param.logout","true");
+        return "login";
     }
 
 }

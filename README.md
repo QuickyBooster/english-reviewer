@@ -1,1 +1,1 @@
-"# english-reviewer" 
+Overview: Personal project using Java. This project is about storage English word like a dictionary. I am continuing to scale it up and use more technologies such as Spring Security, as well as building the front-end.
