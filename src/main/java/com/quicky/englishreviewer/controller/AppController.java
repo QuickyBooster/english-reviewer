@@ -24,6 +24,7 @@ public class AppController {
         return repository.findAll();
     }
 
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public void insert(@RequestBody Word newWord) {
