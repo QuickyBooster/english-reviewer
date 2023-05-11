@@ -12,8 +12,8 @@
 </head>
 <body>
 <div class="container" }>
-    <form class="form-signin" method="post" action="/authentication/login-check">
-        <div >${param.error}${param.logout}</div>
+    <form class="form-signin" method="post" action="/j_spring_security_check">
+        <div >${param.error} ${param.logout}</div>
         <h2 class="form-signin-heading">Please sign in</h2>
         <p>
             <label for="username" class="sr-only">Username</label>
