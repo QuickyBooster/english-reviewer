@@ -1,4 +1,4 @@
-package com.quicky.englishreviewer.model;
+package com.quicky.englishreviewer.data.model;
 
 public enum Type {
     NOUN,

@@ -1,7 +1,7 @@
-package com.quicky.englishreviewer.controller;
+package com.quicky.englishreviewer.data.controller;
 
-import com.quicky.englishreviewer.model.Word;
-import com.quicky.englishreviewer.repository.WordRepository;
+import com.quicky.englishreviewer.data.model.Vocabulary;
+import com.quicky.englishreviewer.data.repository.VocabularyRepository;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -13,24 +13,24 @@ import java.util.List;
 @RestController
 public class AppController {
 
-    private final WordRepository repository;
+    private final VocabularyRepository repository;
 
-    public AppController(WordRepository repository) {
+    public AppController(VocabularyRepository repository) {
         this.repository = repository;
     }
 
     @GetMapping("")
-    public List<Word> findAll() {
+    public List<Vocabulary> findAll() {
         return repository.findAll();
     }
 
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public void insert(@RequestBody Word newWord) {
-        if (repository.findWordByWordiContains(newWord.wordi()).size()!=0) {
-            for (Word word : repository.findWordByWordiContains(newWord.wordi())) {
-                if (word.wordi().equals(newWord.wordi())) {
+    public void insert(@RequestBody Vocabulary newWord) {
+        if (repository.findWordByWordContains(newWord.getWord()).size()!=0) {
+            for (Vocabulary word : repository.findWordByWordContains(newWord.getWord())) {
+                if (word.getWord().equals(newWord.getWord())) {
                     throw new ResponseStatusException(HttpStatus.CONFLICT, "already has one");
                 }
             }
@@ -41,10 +41,10 @@ public class AppController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/delete/{key}")
     public void delete(@Valid @PathVariable String key) {
-        if(repository.findWordByWordiContains(key).size()==0)
+        if(repository.findWordByWordContains(key).size()==0)
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"not found");
-        for (Word word : repository.findWordByWordiContains(key)) {
-            if (word.wordi().equals(key)) {
+        for (Vocabulary word : repository.findWordByWordContains(key)) {
+            if (word.getWord().equals(key)) {
                 repository.delete(word);
                 break;
             }
@@ -53,12 +53,12 @@ public class AppController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/change/{key}")
-    public void update(@Valid @RequestBody Word newWord, @PathVariable String key) {
-        if (repository.findWordByWordiContains(key).size()==0) {
+    public void update(@Valid @RequestBody Vocabulary newWord, @PathVariable String key) {
+        if (repository.findWordByWordContains(key).size()==0) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "word not found");
         }
-        for (Word word : repository.findWordByWordiContains(key)) {
-            if (word.wordi().equals(newWord.wordi()) || word.wordi().equals(key)) {
+        for (Vocabulary word : repository.findWordByWordContains(key)) {
+            if (word.getWord().equals(newWord.getWord()) || word.getWord().equals(key)) {
                 repository.delete(word);
                 break;
             }

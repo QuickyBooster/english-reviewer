@@ -1,9 +1,10 @@
-package com.quicky.englishreviewer.config;
+package com.quicky.englishreviewer.data.config;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.quicky.englishreviewer.model.Word;
-import com.quicky.englishreviewer.repository.WordRepository;
+import com.quicky.englishreviewer.data.model.Vocabulary;
+import com.quicky.englishreviewer.data.repository.VocabularyRepository;
+import com.quicky.englishreviewer.security.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -13,10 +14,10 @@ import java.util.List;
 @Component
 public class DataLoader implements CommandLineRunner {
 
-    private final WordRepository repository;
+    private final VocabularyRepository repository;
     private final ObjectMapper objectMapper;
 
-    public DataLoader(WordRepository repository, ObjectMapper objectMapper) {
+    public DataLoader(VocabularyRepository repository, ObjectMapper objectMapper) {
         this.repository = repository;
         this.objectMapper = objectMapper;
     }
@@ -25,10 +26,11 @@ public class DataLoader implements CommandLineRunner {
     public void run(String... args) throws Exception {
         if (repository.count() == 0) {
             try (InputStream inputStream = TypeReference.class.getResourceAsStream("/data/data.json")) {
-                repository.saveAll(objectMapper.readValue(inputStream, new TypeReference<List<Word>>() {
+                repository.saveAll(objectMapper.readValue(inputStream, new TypeReference<List<Vocabulary>>() {
                 }));
             }
         }
+
     }
 }
 

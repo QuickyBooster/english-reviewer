@@ -1,7 +1,7 @@
 [
   {
     "id": null,
-    "wordi":"assistant",
+    "word":"assistant",
     "type":"NOUN",
     "meanvi": "Trợ lý",
     "meanen": "A person who hel another person manage time, schedule,...",
@@ -13,7 +13,7 @@
   },
   {
     "id": null,
-    "wordi":"punch",
+    "word":"punch",
     "type":"VERB",
     "meanvi": "đấm",
     "meanen": "Using hand to hit somebody or something",

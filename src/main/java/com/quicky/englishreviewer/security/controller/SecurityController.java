@@ -1,4 +1,4 @@
-package com.quicky.englishreviewer.controller;
+package com.quicky.englishreviewer.security.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/authentication")
 @Controller
-public class LoginController {
+public class SecurityController {
     @GetMapping("/login")
     public String loginPage(){
         return "login";
