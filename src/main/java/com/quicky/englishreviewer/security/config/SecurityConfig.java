@@ -31,12 +31,16 @@ public class SecurityConfig {
     }
 
     @Bean
-    @Order(0)
+    @Order(1)
     public SecurityFilterChain loginFilterChain(HttpSecurity http) throws Exception {
         return http
-                .securityMatcher(AntPathRequestMatcher.antMatcher("/authentication**"))
+                .authorizeHttpRequests(auth->auth
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/authentication**")).permitAll()
+                        .requestMatchers("/home**").permitAll()
+                        .requestMatchers("/error**").permitAll()
+                        .anyRequest().authenticated()
+                )
                 .csrf(csrf->csrf.disable())
-                .authorizeHttpRequests(auth-> auth.requestMatchers("**").permitAll())
                 .userDetailsService(jpaUserDetailsService)
                 .formLogin(form->form
                         .usernameParameter("username")
@@ -46,14 +50,19 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/home")
                         .failureUrl("/authentication/login=error")
                 )
+                .httpBasic(Customizer.withDefaults())
                 .logout(log->log
                         .logoutUrl("/logout")
                         .deleteCookies("JSESSIONID")
                 )
+                .headers(headers -> headers
+                        .frameOptions()
+                        .sameOrigin()
+                )
                 .build();
     }
     @Bean
-    @Order(1)
+    @Order(0)
     public SecurityFilterChain homeFilterChain(HttpSecurity http) throws Exception {
         return http
                 .securityMatcher(AntPathRequestMatcher.antMatcher("/h2-console/**"))
@@ -63,15 +72,5 @@ public class SecurityConfig {
                 .build();
     }
 
-    @Bean
-    @Order(2)
-    public SecurityFilterChain othersFilterChain(HttpSecurity http) throws Exception {
-        return http
-                .csrf(Customizer.withDefaults())
-                .authorizeHttpRequests(auth->auth
-                        .requestMatchers("/home").permitAll()
-                        .anyRequest().authenticated())
-                .build();
-    }
 
 }
