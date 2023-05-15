@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -31,11 +30,22 @@ public class SecurityConfig {
     }
 
     @Bean
+    @Order(0)
+    public SecurityFilterChain h2FilterChain(HttpSecurity http) throws Exception {
+        return http
+                .securityMatcher(AntPathRequestMatcher.antMatcher("/h2-console/**"))
+                .csrf(csrf->csrf.disable())
+                .authorizeHttpRequests(auth-> auth.requestMatchers("**").permitAll())
+                .headers(frame->frame.frameOptions().disable())
+                .build();
+    }
+    @Bean
     @Order(1)
     public SecurityFilterChain loginFilterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(auth->auth
-                        .requestMatchers(AntPathRequestMatcher.antMatcher("/authentication**")).permitAll()
+                        .requestMatchers("/WEB-INF/**","/authentication**","/favicon.ico").permitAll()
+                        .requestMatchers("https://maxcdn.bootstrapcdn.com/**","https://getbootstrap.com").permitAll()
                         .requestMatchers("/home**").permitAll()
                         .requestMatchers("/error**").permitAll()
                         .anyRequest().authenticated()
@@ -49,6 +59,7 @@ public class SecurityConfig {
                         .loginProcessingUrl("/j_spring_security_check")
                         .defaultSuccessUrl("/home")
                         .failureUrl("/authentication/login=error")
+                        .permitAll()
                 )
                 .httpBasic(Customizer.withDefaults())
                 .logout(log->log
@@ -59,16 +70,6 @@ public class SecurityConfig {
                         .frameOptions()
                         .sameOrigin()
                 )
-                .build();
-    }
-    @Bean
-    @Order(0)
-    public SecurityFilterChain homeFilterChain(HttpSecurity http) throws Exception {
-        return http
-                .securityMatcher(AntPathRequestMatcher.antMatcher("/h2-console/**"))
-                .csrf(csrf->csrf.disable())
-                .authorizeHttpRequests(auth-> auth.requestMatchers("**").permitAll())
-                .headers(frame->frame.frameOptions().disable())
                 .build();
     }
 

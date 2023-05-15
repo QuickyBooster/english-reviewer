@@ -12,17 +12,17 @@ public class SecurityController {
         return "login";
     }
 
-    @PostMapping("/home")
+    @PostMapping("/welcome-home")
     public String welcomePage(ModelMap model){
         model.put("userId","you");
         return "welcome";
     }
-    @GetMapping("/authentication/login=error")
+    @GetMapping("/login=error")
     public String failLogin(ModelMap model){
         model.put("param.error","true");
         return"login";
     }
-    @GetMapping("/authentication/logout")
+    @GetMapping("/logout")
     public String logout(ModelMap model){
         model.put("param.logout","true");
         return "login";
