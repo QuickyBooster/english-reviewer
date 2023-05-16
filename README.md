@@ -1,6 +1,6 @@
 Overview: Personal project using Java. This project is about storage English word like a dictionary. I am continuing to scale it up and use more technologies such as Spring Security, as well as building the front-end.
 
-		#ENGLISH-REVIEWER
+# ENGLISH-REVIEWER
 
 ## +functions
 -give a random word, if answered true, remove it from the list, else continue with 
@@ -16,7 +16,7 @@ such as edit, delete
 -account
 
 ## +data
-	### Vocabulary
+### Vocabulary
 -[Long][key] id
 -[String][key] word
 =[enum] type(n,v,adj,adv)
@@ -26,14 +26,14 @@ such as edit, delete
 -[String] link media us
 -[String] link media en
 =[Long] idUser
-	### User
+### User
 -[Long][key] id
 -[String] username
 -[String] password (encrypted)
 -[String] roles
-	### VocabularyRepository implement ListCrudRepository<Word,String>
-	### SecurityUser implement UserDetails
-	### Enum Type
+### VocabularyRepository implement ListCrudRepository<Word,String>
+### SecurityUser implement UserDetails
+### Enum Type
 NOUN, VERB, ADJECTIVE, ADVERB
 
 #### ("=" means foreign key)
