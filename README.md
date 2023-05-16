@@ -2,7 +2,7 @@ Overview: Personal project using Java. This project is about storage English wor
 
 # ENGLISH-REVIEWER
 
-## +functions
+## + FUNCTION
 -give a random word, if answered true, remove it from the list, else continue with 
 the next word, till a random time, meet that word again
 -add word to the list
@@ -15,28 +15,30 @@ such as edit, delete
 -can check the word with oxford dictionary or google translate
 -account
 
-## +data
+## + DATA
 ### Vocabulary
--[Long][key] id
--[String][key] word
-=[enum] type(n,v,adj,adv)
--[String] the meaning in english & vietnamese
--[String] the spelling
--[String] examples using word (it connects with the meaning)
--[String] link media us
--[String] link media en
-=[Long] idUser
+- [Long] [key] id
+- [String] word
+- [enum] type(n,v,adj,adv)
+- [String] the meaning in english & vietnamese
+- [String] the spelling
+- [String] examples using word (it connects with the meaning)
+- [String] link media us
+- [String] link media en
+- [Long] idUser
 ### User
--[Long][key] id
--[String] username
--[String] password (encrypted)
--[String] roles
+- [Long] [key] id
+- [String] username
+- [String] password (encrypted)
+- [String] roles
 ### VocabularyRepository implement ListCrudRepository<Word,String>
 ### SecurityUser implement UserDetails
-### Enum Type
-NOUN, VERB, ADJECTIVE, ADVERB
+### [Enum] Type
+- NOUN
+- VERB
+- ADJECTIVE
+- ADVERB
 
-#### ("=" means foreign key)
 
 
 
