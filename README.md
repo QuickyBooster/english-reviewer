@@ -2,8 +2,8 @@ Overview: Personal project using Java. This project is about storage English wor
 
 		#ENGLISH-REVIEWER
 
-+##functions
--give a random word, aswered true, remove it from the list, else continue with 
+## +functions
+-give a random word, if answered true, remove it from the list, else continue with 
 the next word, till a random time, meet that word again
 -add word to the list
 -give a name of the list, maybe give a tag to a word, pick the tag, we can 
@@ -15,8 +15,8 @@ such as edit, delete
 -can check the word with oxford dictionary or google translate
 -account
 
-+##data
-	###Vocabulary
+## +data
+	### Vocabulary
 -[Long][key] id
 -[String][key] word
 =[enum] type(n,v,adj,adv)
@@ -26,17 +26,17 @@ such as edit, delete
 -[String] link media us
 -[String] link media en
 =[Long] idUser
-	###User
+	### User
 -[Long][key] id
 -[String] username
 -[String] password (encrypted)
 -[String] roles
-	###VocabularyRepository implement ListCrudRepository<Word,String>
-	###SecurityUser implement UserDetails
-	###Enum Type
+	### VocabularyRepository implement ListCrudRepository<Word,String>
+	### SecurityUser implement UserDetails
+	### Enum Type
 NOUN, VERB, ADJECTIVE, ADVERB
 
-("=" means foreign key)
+#### ("=" means foreign key)
 
 
 
