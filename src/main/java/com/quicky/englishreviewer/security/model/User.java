@@ -1,14 +1,13 @@
 package com.quicky.englishreviewer.security.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.quicky.englishreviewer.data.model.Vocabulary;
+import com.quicky.englishreviewer.data.model.VocabularyCollection;
+import jakarta.persistence.*;
 
-import java.util.Date;
+import java.util.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "'user'")
 public class User {
     @Id
     @GeneratedValue
@@ -16,6 +15,21 @@ public class User {
     private String username;
     private String password;
     private String roles;
+    private String email;
+    private Date dateOfBirth;
+
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
+    private Set<VocabularyCollection> collections = new HashSet<>();
+
+    public void addCollections(VocabularyCollection... vocabularyCollection) {
+        for (VocabularyCollection vol : vocabularyCollection) {
+            collections.add(vol);
+            vol.setUser(this);
+        }
+    }
+
+    public User() {
+    }
 
     @Override
     public String toString() {
@@ -27,12 +41,6 @@ public class User {
                 ", email='" + email + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
                 '}';
-    }
-
-    private String email;
-    private Date dateOfBirth;
-
-    public User() {
     }
 
     public User(String username, String password, String roles) {

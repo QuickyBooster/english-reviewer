@@ -1,25 +1,52 @@
 package com.quicky.englishreviewer.data.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.*;
 
 @Entity
 @Table(name = "vocabulary")
 public class Vocabulary {
     @GeneratedValue
     @Id
-    Long id;
-    String word;
-    Type type;
-    String meanen;
-    String meanvi;
-    String spellingen;
-    String spellingus;
-    String example;
-    String urlen;
-    String urlus;
+    private Long id;
+    private String word;
+    private Type type;
+    private String meanen;
+    private String meanvi;
+    private String spellingen;
+    private String spellingus;
+    private String example;
+    private String urlen;
+    private String urlus;
+    @ManyToMany(mappedBy = "setVocabulary",cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
+    /*@JoinTable(name = "vocabInCollection",
+            joinColumns = @JoinColumn(name = "vocabulary_id"),
+            inverseJoinColumns = @JoinColumn(name = "vocabularycollection_id")
+    )*/
+    private Set<VocabularyCollection> collections = new HashSet<>();
+
+    public Iterator<VocabularyCollection> getCollections() {
+        return this.collections.iterator();
+    }
+
+    public void addCollection(VocabularyCollection... collection) {
+        for (VocabularyCollection vol: collection){
+            this.collections.add(vol);
+        }
+    }
+
+    public Vocabulary(String word, Type type, String meanen, String meanvi, String spellingen, String spellingus, String example, String urlen, String urlus, Long userId) {
+        this.word = word;
+        this.type = type;
+        this.meanen = meanen;
+        this.meanvi = meanvi;
+        this.spellingen = spellingen;
+        this.spellingus = spellingus;
+        this.example = example;
+        this.urlen = urlen;
+        this.urlus = urlus;
+    }
 
     public Vocabulary(String word, Type type, String meanen, String meanvi, String spellingen, String spellingus, String example, String urlen, String urlus) {
         this.word = word;
@@ -35,7 +62,7 @@ public class Vocabulary {
 
     @Override
     public String toString() {
-        return "Word{" +
+        return "Vocabulary{" +
                 "id=" + id +
                 ", word='" + word + '\'' +
                 ", type=" + type +
