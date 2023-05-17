@@ -3,17 +3,17 @@ Overview: Personal project using Java. This project is about storage English wor
 # ENGLISH-REVIEWER
 
 ## + DESIRED FUNCTION
--give a random word, if answered true, remove it from the list, else continue with 
+- give a random word, if answered true, remove it from the list, else continue with 
 the next word, till a random time, meet that word again
--add word to the list
--give a name of the list, maybe give a tag to a word, pick the tag, we can 
+- add word to the list
+- give a name of the list, maybe give a tag to a word, pick the tag, we can 
 review all the words have that tag
--delete selected word if you want
--view the word list, by tag, by ascending, descending,... and have some options
+- delete selected word if you want
+- view the word list, by tag, by ascending, descending,... and have some options
 such as edit, delete
--add new word 
--can check the word with oxford dictionary or google translate
--account
+- add new word 
+- can check the word with oxford dictionary or google translate
+- account
 
 ## + DATA
 ### Vocabulary
