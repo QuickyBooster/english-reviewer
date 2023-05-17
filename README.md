@@ -2,7 +2,7 @@ Overview: Personal project using Java. This project is about storage English wor
 
 # ENGLISH-REVIEWER
 
-## + FUNCTION
+## + DESIRED FUNCTION
 -give a random word, if answered true, remove it from the list, else continue with 
 the next word, till a random time, meet that word again
 -add word to the list
@@ -25,13 +25,23 @@ such as edit, delete
 - [String] examples using word (it connects with the meaning)
 - [String] link media us
 - [String] link media en
-- [Long] idUser
+- [Set\<VocabularyCollection>] collections
 ### User
 - [Long] [key] id
 - [String] username
 - [String] password (encrypted)
 - [String] roles
-### VocabularyRepository implement ListCrudRepository<Word,String>
+- [Set\<VocabularyCollection>] collections
+### VocabularyCollection
+- [Long] [key] id
+- [User] user
+- [Set\<Vocabulary>] setVocabulary
+### VocabInCollection
+- [Long] vocabulary_id
+- [Long] vocabularycollection_id
+### VocabularyRepository implement ListCrudRepository<Word,Long>
+### UserRepository implement ListCrudRepository<User,Long>
+### VocabularyCollectionRepository implement ListCrudRepository<VocabularyCollection,Long>
 ### SecurityUser implement UserDetails
 ### [Enum] Type
 - NOUN
