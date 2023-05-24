@@ -44,7 +44,7 @@ public class SecurityConfig {
     public SecurityFilterChain loginFilterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(auth->auth
-                        .requestMatchers("/WEB-INF/**","/authentication**","/favicon.ico").permitAll()
+                        .requestMatchers("/WEB-INF/**","/authentication**","/favicon.ico","/mainpage").permitAll()
                         .requestMatchers("https://maxcdn.bootstrapcdn.com/**","https://getbootstrap.com").permitAll()
                         .requestMatchers("/home**").permitAll()
                         .requestMatchers("/error**").permitAll()

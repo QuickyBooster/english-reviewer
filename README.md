@@ -3,51 +3,44 @@ Overview: Personal project using Java. This project is about storage English wor
 # ENGLISH-REVIEWER
 
 ## + DESIRED FUNCTION
-- give a random word, if answered true, remove it from the list, else continue with 
-the next word, till a random time, meet that word again
-- add word to the list
-- give a name of the list, maybe give a tag to a word, pick the tag, we can 
-review all the words have that tag
-- delete selected word if you want
-- view the word list, by tag, by ascending, descending,... and have some options
-such as edit, delete
-- add new word 
-- can check the word with oxford dictionary or google translate
-- account
+- Storage vocabulary in a collection that belong to an only user
+- Authentication & authorization by using Spring Security with JPA
+- Some technologies: JPA, JDBC, OAuth2, Hibernate
 
 ## + DATA
-### Vocabulary
-- [Long] [key] id
-- [String] word
-- [enum] type(n,v,adj,adv)
-- [String] the meaning in english & vietnamese
-- [String] the spelling
-- [String] examples using word (it connects with the meaning)
-- [String] link media us
-- [String] link media en
-- [Set\<VocabularyCollection>] collections
-### User
-- [Long] [key] id
-- [String] username
-- [String] password (encrypted)
-- [String] roles
-- [Set\<VocabularyCollection>] collections
-### VocabularyCollection
-- [Long] [key] id
-- [User] user
-- [Set\<Vocabulary>] setVocabulary
-### VocabInCollection
-- [Long] vocabulary_id
-- [Long] vocabularycollection_id
-### VocabularyRepository implement ListCrudRepository<Word,Long>
-### UserRepository implement ListCrudRepository<User,Long>
-### VocabularyCollectionRepository implement ListCrudRepository<VocabularyCollection,Long>
-### SecurityUser implement UserDetails
-### [Enum] Type
-- NOUN
-- VERB
-- ADJECTIVE
-- ADVERB
+### `Vocabulary`
+- [Long] [key] `id`
+- [String] `word`
+- [Type] `type`
+- [String] `meanvi`
+- [String] `meanus`
+- [String] `spelling`
+- [String] `examples`
+- [String] `linkus`
+- [String] `linken`
+- [Set\<VocabularyCollection>] `collections`
+### `User`
+- [Long] [key] `id`
+- [String] `username`
+- [String] `password` (encrypted)
+- [String] `roles`
+- [Set\<VocabularyCollection>] `collections`
+### `VocabularyCollection`
+- [Long] [key] `id`
+- [User] `user`
+- [Set\<Vocabulary>] `setVocabulary`
+### `VocabInCollection`
+- [Long] `vocabulary_id`
+- [Long] `vocabularycollection_id`
+### `VocabularyRepository` implement ListCrudRepository<Word,Long>
+### `UserRepository` implement ListCrudRepository<User,Long>
+### `VocabularyCollectionRepository` implement ListCrudRepository<VocabularyCollection,Long>
+### `SecurityUser` implement UserDetails
+### [Enum] `Type`
+- `NOUN`
+- `VERB`
+- `ADJECTIVE`
+- `ADVERB`
 
 
 
