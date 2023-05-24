@@ -1,8 +1,8 @@
-Overview: Personal project using Java. This project is about storage English word like a dictionary. I am continuing to scale it up and use more technologies such as Spring Security, as well as building the front-end.
+Overview: Personal project using Java. This project is about storage English word like a dictionary.
 
 # ENGLISH-REVIEWER
 
-## + DESIRED FUNCTION
+## + FUNCTION
 - Storage vocabulary in a collection that belong to an only user
 - Authentication & authorization by using Spring Security with JPA
 - Some technologies: JPA, JDBC, OAuth2, Hibernate
